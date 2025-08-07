@@ -171,6 +171,7 @@ def calculate():
     else:
         return render_template("index.html",result="Error saving data to google sheets")
 
-if __name__ == '__main__':
-    app.run(debug=True)
-exit()
+# if __name__ == '__main__':
+#     app.run(debug=True)
+
+# exit()
