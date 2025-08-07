@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Carbon Credit Calculator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f0f4f8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 40px;
+            color: #2c3e50;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 40px auto;
+            padding: 30px 40px;
+            background: white;
+            border-radius: 12px;
+            max-width: 400px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        form label {
+            margin: 10px 0 5px;
+            width: 100%;
+            font-weight: 600;
+            color: #34495e;
+        }
+
+        form input,
+        form select {
+            width: 100%;
+            padding: 10px;
+            font-size: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            transition: border-color 0.3s ease;
+        }
+
+        form input:focus,
+        form select:focus {
+            border-color: #27ae60;
+            outline: none;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #1e8449;
+        }
+
+        .result-box {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #27ae60;
+            background-color: #ecf0f1;
+            padding: 12px 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.1);
+        }
+
+        select.options {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculate and Sell Carbon Credits</h1>
+
+    <form action="/calculate" method="post">
+        <label>Enter your name:</label>
+            <input type="text" name="user_name" placeholder="Your Name" required>
+        <label for="crop">Select Crop:</label>
+        <select id="crop" name="crop" required>
+            <option class="options" value="">--Choose a Crop--</option>
+            <option class="options" value="wheat">Wheat</option>
+            <option class="options" value="rice">Rice</option>
+            <option class="options" value="maize">Maize</option>
+            <option class="options" value="sugarcane">Sugarcane</option>
+            <option class="options" value="soyabean">Soyabean</option>
+            <option class="options" value="cotton">Cotton</option>
+            <option class="options" value="groundnut">Groundnut</option>
+            <option class="options" value="mustard">Mustard</option>
+        </select>
+
+        <label for="region">Select Region:</label>
+        <select id="region" name="region" required>
+            <option class="options" value="">--Choose a Region--</option>
+            <option class="options" value="madhyapradesh">Madhya Pradesh</option>
+            <option class="options" value="uttarpradesh">Uttar Pradesh</option>
+            <option class="options" value="punjab">Punjab</option>
+        </select>
+
+        <label>Land (in hectares):</label>
+        <input type="number" min="1" name="land" placeholder="Land(in hectares)" step="any">
+
+        <label>Total Yield (in tonnes):</label>
+        <input type="number" min="1" name="total_yield" placeholder="Yield(in tonnes)" step="any">
+
+        <label for="residue">Residue Burning:</label>
+            <select name="residue" id="residue" required>
+                <option value="">--Select an Option: Yes/No--</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+
+        <input type="submit" value="Calculate">
+        <a href="/" style="margin-top: 20px; display: inline-block; color: #2980b9;">Start Over</a>
+    </form>
+
+    {% if result is not none %}
+        <div class="result-box">
+            {{ result }}
+        </div>
+    {% endif %}
+</body>
+</html>
