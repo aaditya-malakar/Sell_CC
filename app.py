@@ -15,6 +15,7 @@ def calculate():
     land = float(request.form['land'])
     total_yield = float(request.form['total_yield'])
     residue = request.form['residue'].replace(" ","").lower()
+    sell = request.form['sell']
     yield_per_ha = total_yield / land
 
     acc_crops = " Wheat, Rice, Maize, Sugarcane, Soyabean, Cotton, Groundnut, Mustard "
@@ -163,15 +164,18 @@ def calculate():
 
     Total_CO2_net=CO2_net*land
     carbon_credits=Total_CO2_net
-    data={"name":name,"crop":crop,"region":region,"land":land,"total_yield":total_yield,"residue":residue,"carbon_credits":carbon_credits}
-    url="https://script.google.com/macros/s/AKfycbzhKLIvvfiz-7AURmwQOtjaGUYjsXRv1XEZivotD7L0VCSlx9_Zd6CWUQbEJwWdbnc/exec"
-    response=requests.post(url,json=data)
-    if response.status_code==200:
-        return render_template("index.html", result=f"Carbon Credits: {carbon_credits:.2f}")
-    else:
-        return render_template("index.html",result="Error saving data to google sheets")
+    response= None
+    if sell=="yes":
+        data={"name":name,"crop":crop,"region":region,"land":land,"total_yield":total_yield,"residue":residue,"carbon_credits":carbon_credits}
+        url="https://script.google.com/macros/s/AKfycbzhKLIvvfiz-7AURmwQOtjaGUYjsXRv1XEZivotD7L0VCSlx9_Zd6CWUQbEJwWdbnc/exec"
+        response=requests.post(url,json=data)
+        if response and response.status_code==200:
+            return render_template("index.html", result=f"Carbon Credits Generated: {carbon_credits:.2f}")
+        else:
+            return render_template("index.html",result="Error saving data to google sheets")
+    else: 
+        return render_template("index.html", result=f"Carbon Credits Generated: {carbon_credits:.2f}")
+    
 
-# if __name__ == '__main__':
-#     app.run(debug=True)
-
-# exit()
+if __name__ == '__main__':
+    app.run(debug=True)
