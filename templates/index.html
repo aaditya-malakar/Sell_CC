@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carbon Credit Calculator</title>
     <style>
         body {
@@ -71,9 +72,6 @@
         }
 
         .result-box {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
             font-size: 18px;
             font-weight: bold;
             color: #27ae60;
@@ -86,12 +84,18 @@
         select.options {
             font-weight: bold;
         }
+        input, select{
+            width: 250px;
+            padding: 8px;
+            margin: 5px 0;
+            box-sizing: border-box;
+        }
     </style>
 </head>
 <body>
     <h1>Calculate and Sell Carbon Credits</h1>
 
-    <form action="/calculate" method="post">
+    <form action="/calculate#result-section" method="post">
         <label>Enter your name:</label>
             <input type="text" name="user_name" placeholder="Your Name" required>
         <label for="crop">Select Crop:</label>
@@ -127,15 +131,22 @@
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
             </select>
+        <label for="sell">Do you want to sell the credits:</label>
+            <select name="sell" id="sell" required>
+                <option value="">--Select an Option: Yes/No--</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
 
-        <input type="submit" value="Calculate">
+        <input type="submit" value="Calculate & Sell">
         <a href="/" style="margin-top: 20px; display: inline-block; color: #2980b9;">Start Over</a>
-    </form>
-
-    {% if result is not none %}
-        <div class="result-box">
+        <br>
+        {% if result is not none %}
+        <div class="result-box" id="result-section">
             {{ result }}
         </div>
     {% endif %}
+    </form>
+
 </body>
 </html>
