@@ -75,10 +75,8 @@
             font-size: 18px;
             font-weight: bold;
             color: #27ae60;
-            background-color: #ecf0f1;
             padding: 12px 20px;
             border-radius: 10px;
-            box-shadow: 0 0 12px rgba(0,0,0,0.1);
         }
 
         select.options {
@@ -89,6 +87,25 @@
             padding: 8px;
             margin: 5px 0;
             box-sizing: border-box;
+        }
+
+        #start{
+            margin-top: 20px;
+            display: inline-block;
+            color: #2980b9;
+            text-decoration: none;
+            font-weight: bold;
+            gap: 10px;
+            margin-right: 40px;
+        }
+
+        #home{
+            margin-top: 20px;
+            display: inline-block;
+            color: #2980b9;
+            text-decoration: none;
+            font-weight: bold;
+            margin-left: 40px;
         }
     </style>
 </head>
@@ -131,15 +148,18 @@
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
             </select>
-        <label for="sell">Do you want to sell the credits:</label>
+        <!-- <label for="sell">Do you want to sell the credits:</label>
             <select name="sell" id="sell" required>
                 <option value="">--Select an Option: Yes/No--</option>
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
-            </select>
+            </select> -->
 
         <input type="submit" value="Calculate & Sell">
-        <a href="/" style="margin-top: 20px; display: inline-block; color: #2980b9;">Start Over</a>
+        <span>
+        <a href="/" id="start" margin-top: 20px; display: inline-block; color: #2980b9;">Start Over</a>
+        <a href="https://ladhaanay.wixsite.com/terracred" id="home"margin-top: 20px; display: inline-block; color: #2980b9;">Back to Home</a>
+        </span>
         <br>
         {% if result is not none %}
         <div class="result-box" id="result-section">
