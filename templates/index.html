@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carbon Credit Calculator</title>
+    <title>Sell Carbon Credits</title>
     <style>
         body {
             margin: 0;
@@ -112,7 +112,7 @@
 <body>
     <h1>Calculate and Sell Carbon Credits</h1>
 
-    <form action="/calculate#result-section" method="post">
+    <form action="/calculate#result.html" method="post">
         <label>Enter your name:</label>
             <input type="text" name="user_name" placeholder="Your Name" required>
         <label for="crop">Select Crop:</label>
@@ -157,15 +157,10 @@
 
         <input type="submit" value="Calculate & Sell">
         <span>
-        <a href="/" id="start" margin-top: 20px; display: inline-block; color: #2980b9;">Start Over</a>
+        <a href="/" id="start" margin-top: 20px; display: inline-block; color: #2980b9;>Start Over</a>
         <a href="https://ladhaanay.wixsite.com/terracred" id="home"margin-top: 20px; display: inline-block; color: #2980b9;">Back to Home</a>
         </span>
         <br>
-        {% if result is not none %}
-        <div class="result-box" id="result-section">
-            {{ result }}
-        </div>
-    {% endif %}
     </form>
 
 </body>
