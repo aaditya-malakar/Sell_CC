@@ -164,17 +164,31 @@ def calculate():
 
     Total_CO2_net=CO2_net*land
     carbon_credits=Total_CO2_net
+
+
+
+    return render_template("result.html", name=name, crop=crop, region=region, land=land, total_yield=total_yield, residue=residue, carbon_credits=carbon_credits,  result=f"Carbon Credits Generated: {carbon_credits:.2f}")
+
+@app.route("/sell", methods=["POST"])
+def sell():
+    sell = request.form["sell"]
+    name = request.form["name"]
+    crop = request.form["crop"]
+    region = request.form["region"]
+    land = request.form["land"]
+    total_yield = request.form["total_yield"]
+    residue = request.form["residue"]
+    carbon_credits = request.form["carbon_credits"]
     response= None
-    # if sell=="yes":
-    data={"name":name,"crop":crop,"region":region,"land":land,"total_yield":total_yield,"residue":residue,"carbon_credits":carbon_credits}
-    url="https://script.google.com/macros/s/AKfycbzhKLIvvfiz-7AURmwQOtjaGUYjsXRv1XEZivotD7L0VCSlx9_Zd6CWUQbEJwWdbnc/exec"
-    response=requests.post(url,json=data)
-    if response and response.status_code==200:
-        return render_template("index.html", result=f"Carbon Credits Generated: {carbon_credits:.2f}")
-    else:
-        return render_template("index.html",result="Error saving data to google sheets")
-    # # else: 
-    #     return render_template("index.html", result=f"Carbon Credits Generated: {carbon_credits:.2f}")
+
+    if sell=="yes":
+        data={"name":name,"crop":crop,"region":region,"land":land,"total_yield":total_yield,"residue":residue,"carbon_credits":carbon_credits}
+        url="https://script.google.com/macros/s/AKfycbzhKLIvvfiz-7AURmwQOtjaGUYjsXRv1XEZivotD7L0VCSlx9_Zd6CWUQbEJwWdbnc/exec"
+        response=requests.post(url,json=data)
+        if response and response.status_code==200:
+            return render_template("msg.html", msg=f"Your data has been saved, and credits have been sent for certification")
+    else: 
+        return render_template("msg.html", msg=f"Your data has not been saved")
     
 
 if __name__ == '__main__':
