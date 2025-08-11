@@ -122,35 +122,35 @@ def calculate():
 # PUNJAB 
     elif region in ["punjab"]:
         if crop=="wheat":
-            R,HI,S_f,Se_f=1.0,0.45,1.0,0.85
+            R,HI,S_f,Se_f=0.25,0.45,1.0,0.85
             CO2_gross=yield_per_ha*((1+R)/HI)*0.45*3.67*S_f*Se_f
             N,L,E,P,W,H=1.60,0.28,0.23,0.014,1.4,0.022
         elif crop=="rice":
-            R,HI,S_f,Se_f=1.5,0.50,1.0,1.0
+            R,HI,S_f,Se_f=0.25,0.50,1.0,1.0
             CO2_gross=yield_per_ha*((1+R)/HI)*0.45*3.67*S_f*Se_f
             N,L,E,P,W,H=2.3,0.29,0.34,0.018,1.5,0.028
         elif crop=="maize":
-            R,HI,S_f,Se_f=1.5,0.50,1.0,1.0
+            R,HI,S_f,Se_f=0.25,0.40,1.0,1.0
             CO2_gross=yield_per_ha*((1+R)/HI)*0.45*3.67*S_f*Se_f
             N,L,E,P,W,H=1.4,0.23,0.11,0.009,1.5,0.011
         elif crop=="sugarcane":
-            R,HI,S_f,Se_f=0.3,0.50,1.0,1.1
+            R,HI,S_f,Se_f=0.20,0.75,1.0,1.1
             CO2_gross=yield_per_ha*((1+R)/HI)*0.45*3.67*S_f*Se_f
             N,L,E,P,W,H=2.1,0.16,0.9,0.03,0.8,0.04
         elif crop=="soyabean":
-            R,HI,S_f,Se_f=1.5,0.40,1.0,1.0
+            R,HI,S_f,Se_f=0.40,0.35,1.0,1.0
             CO2_gross=yield_per_ha*((1+R)/HI)*0.45*3.67*S_f*Se_f
             N,L,E,P,W,H=0.42,0.18,0.78,0.009,0.65,0.012
         elif crop=="cotton":
-            R,HI,S_f,Se_f=2.5,0.40,1.0,0.85
+            R,HI,S_f,Se_f=0.40,0.35,1.0,0.85
             CO2_gross=yield_per_ha*((1+R)/HI)*0.45*3.67*S_f*Se_f
             N,L,E,P,W,H=1.35,0.26,0.16,0.013,1.1,0.02
         elif crop=="groundnut":
-            R,HI,S_f,Se_f=1.2,0.35,1.0,0.85
+            R,HI,S_f,Se_f=0.20,0.30,1.0,0.85
             CO2_gross=yield_per_ha*((1+R)/HI)*0.45*3.67*S_f*Se_f
             N,L,E,P,W,H=1.35,0.20,0.25,0.012,1.45,0.021
         elif crop=="mustard":
-            R,HI,S_f,Se_f=1.5,0.30,1.0,0.85
+            R,HI,S_f,Se_f=0.40,0.35,1.0,0.85
             CO2_gross=yield_per_ha*((1+R)/HI)*0.45*3.67*S_f*Se_f
             N,L,E,P,W,H=1.50,0.28,0.23,0.015,1.25,0.018
     # Emissions 
@@ -193,3 +193,4 @@ def sell():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
